@@ -10,12 +10,21 @@ module.exports = {
   extends: [
     // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
     // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
-    'plugin:vue/essential'
+    'plugin:vue/strongly-recommended'
   ],
   // required to lint *.vue files
-  plugins: [
-    'vue'
-  ],
+  plugins: ['vue'],
   // add your custom rules here
-  rules: {}
+  rules: {
+    'vue/max-attributes-per-line': [
+      2,
+      {
+        singleline: 1,
+        multiline: {
+          max: 1,
+          allowFirstLine: false
+        }
+      }
+    ]
+  }
 }

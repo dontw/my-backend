@@ -1,37 +1,101 @@
 <template>
-    <div class="login_backgournd">
-        <h1 class="title">{{$t('test')}}</h1>
-        <nuxt-link :to="switchLocalePath('en')">English</nuxt-link>
-        <nuxt-link :to="switchLocalePath('tw')">中文</nuxt-link>
-        <Card class="card" shadow>
-            <h3 class="card__title">管理登录</h3>
-            <form @submit.prevent="onSubmit">
-                <p>账号</p>
-                <i-input @keyup.native="loginTyping(user,pwd)" v-model.trim="user" class="input" type="text" placeholder="请输入账号" size="large" :maxlength="20">
-                    <span slot="prepend">
-                        <Icon class="icon" type="person" color="#CCCCCC" size="20"></Icon>
-                    </span>
-                </i-input>
-                <p>密码</p>
-                <i-input @keyup.native="loginTyping(user,pwd)" v-model.trim="pwd" class="input" :class="{'has-error':false}" type="password" placeholder="请输入密码" size="large" :maxlength="10">
-                    <span slot="prepend">
-                        <Icon class="icon" type="key" color="#CCCCCC" size="20"></Icon>
-                    </span>
-                </i-input>
-                <div class="card__bottom-wrap">
-                    <div class="message-wrap">
-                        <p class="message message--success" v-if="successMsgStatus">
-                            <Icon type="checkmark-circled" size="16"></Icon> {{successMsg}}
-                        </p>
-                        <p class="message message--error" v-if="failMsgStatus">
-                            <Icon type="android-warning" size="18"></Icon> {{failMsg}}
-                        </p>
-                    </div>
-                    <Button class="button" size="large" type="primary" html-type="submit" :disabled="disableStatus" :loading="loginStatus">登录</Button>
-                </div>
-            </form>
-        </Card>
-    </div>
+  <div class="login_backgournd">
+    <h1 class="title">{{ $t('test') }}</h1>
+    <Card
+      class="card"
+      shadow
+    >
+      <h3 class="card__title">{{ $t('login.title') }}</h3>
+      <form @submit.prevent="onSubmit">
+        <p>{{ $t('login.acc') }}</p>
+        <i-input
+          @keyup="loginTyping(user,pwd)"
+          v-model.trim="user"
+          class="input"
+          type="text"
+          :placeholder="$t('login.accPlaceholder')"
+          size="large"
+          :maxlength="20"
+        >
+          <span slot="prepend">
+            <Icon
+              class="icon"
+              type="person"
+              color="#CCCCCC"
+              size="20"
+            />
+          </span>
+        </i-input>
+        <p>{{ $t('login.pwd') }}</p>
+        <i-input
+          @keyup="loginTyping(user,pwd)"
+          v-model.trim="pwd"
+          class="input"
+          :class="{'has-error':false}"
+          type="password"
+          :placeholder="$t('login.pwdPlaceholder')"
+          size="large"
+          :maxlength="10"
+        >
+          <span slot="prepend">
+            <Icon
+              class="icon"
+              type="key"
+              color="#CCCCCC"
+              size="20"
+            />
+          </span>
+        </i-input>
+        <div class="card__bottom-wrap">
+          <div class="message-wrap">
+            <p
+              class="message message--success"
+              v-if="successMsgStatus"
+            >
+              <Icon
+                type="checkmark-circled"
+                size="16"
+              />
+              {{ successMsg }}
+            </p>
+            <p
+              class="message message--error"
+              v-if="failMsgStatus">
+              <Icon
+                type="android-warning"
+                size="18"
+              />
+              {{ failMsg }}
+            </p>
+          </div>
+          <div class="lang-wrap">
+            <nuxt-link
+              :to="switchLocalePath('en')"
+              tag="a"
+            >
+              English
+            </nuxt-link>
+            <nuxt-link
+              :to="switchLocalePath('tw')"
+              tag="a">
+              中文
+            </nuxt-link>
+          </div>
+          <Button
+            class="button"
+            size="large"
+            type="primary"
+            html-type="submit"
+            :disabled="disableStatus"
+            :loading="loginStatus"
+            long
+          >
+            {{ $t('login.submit') }}
+          </Button>
+        </div>
+      </form>
+    </Card>
+  </div>
 </template>
 <script>
 export default {
@@ -39,68 +103,70 @@ export default {
     data() {
         return {
             loginStatus: false,
-            disableStatus: true,
+            disableStatus: false,
             successMsgStatus: false,
-            successMsg: "",
+            successMsg: '',
             failMsgStatus: false,
-            failMsg: "",
-            user: "",
-            pwd: ""
-        };
+            failMsg: '',
+            user: '',
+            pwd: ''
+        }
     },
     methods: {
         onSubmit() {
+            this.$router.push('admin')
             //turn off error msg
-            this.toggleErrMsg(null, false);
-            this.loginStatus = true;
+            // this.toggleErrMsg(null, false)
+            // this.loginStatus = true
             // auth user
-            this.$store
-                .dispatch("auth/authUser", {
-                    user: this.user,
-                    pwd: md5(this.pwd)
-                })
-                .then(result => {
-                    // if ok, pop success msg then go to admin page
-                    if (result.code === "ok") {
-                        this.toggleSuccessMsg("恭喜登录成功！", true);
-                        setTimeout(() => {
-                            this.$router.push("/admin");
-                        }, 2000);
-                        return;
-                    }
-                    // if there's error code, pop error msg
-                    if (result.code) {
-                        this.toggleErrMsg(this.errCodeMsg(result.code), true);
-                        return;
-                    }
-                });
+            // this.$store
+            //     .dispatch('auth/authUser', {
+            //         user: this.user,
+            //         pwd: md5(this.pwd)
+            //     })
+            //     .then(result => {
+            //         // if ok, pop success msg then go to admin page
+            //         if (result.code === 'ok') {
+            //             this.toggleSuccessMsg('恭喜登录成功！', true)
+            //             setTimeout(() => {
+            //                 this.$router.push('/admin')
+            //             }, 2000)
+            //             return
+            //         }
+            //         // if there's error code, pop error msg
+            //         if (result.code) {
+            //             this.toggleErrMsg(this.errCodeMsg(result.code), true)
+            //             return
+            //         }
+            //     })
         },
         //侦测是否所有输入格均被输入内容，若都有输入内容，改变登录鈕状态
         loginTyping(user, pwd) {
+            console.log(user, pwd)
             user && pwd
                 ? (this.disableStatus = false)
-                : (this.disableStatus = true);
+                : (this.disableStatus = true)
         },
         //密码格式验证
         userPwdValidate(pwd) {
-            let re = /^[a-zA-Z0-9]{6,10}$/;
+            let re = /^[a-zA-Z0-9]{6,10}$/
             if (!re.test(pwd)) {
-                this.toggleErrMsg("密码输入错误", true);
-                return false;
+                this.toggleErrMsg('密码输入错误', true)
+                return false
             }
-            return true;
+            return true
         },
         toggleErrMsg(errMsg, val) {
-            this.failMsg = errMsg;
-            this.failMsgStatus = val;
-            this.loginStatus = false;
+            this.failMsg = errMsg
+            this.failMsgStatus = val
+            this.loginStatus = false
         },
         toggleSuccessMsg(msg, val) {
-            this.successMsg = msg;
-            this.successMsgStatus = val;
+            this.successMsg = msg
+            this.successMsgStatus = val
         }
     }
-};
+}
 </script>
 <style lang="scss" scoped>
 .login_backgournd {
@@ -160,7 +226,10 @@ p {
 //     border-radius: 4px;
 //     transition: 0.3s;
 // }
-.button {
+.lang-wrap {
     width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
 }
 </style>
