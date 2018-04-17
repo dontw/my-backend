@@ -14,12 +14,12 @@ export default {
     mounted() {
         console.log(
             `%c don's backend %c Detected Version v0.0.0 %c`,
-            'background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff',
-            'background:#2d8cf0 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff',
-            'background:transparent'
-        )
+            "background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff",
+            "background:#2d8cf0 ; padding: 1px; border-radius: 0 3px 3px 0;  color: #fff",
+            "background:transparent"
+        );
     }
-}
+};
 </script>
 
 <style lang="scss" scoped>

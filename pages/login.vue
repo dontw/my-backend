@@ -21,7 +21,7 @@
             <Icon
               class="icon"
               type="person"
-              color="#CCCCCC"
+              color="#CCCCCC" 
               size="20"
             />
           </span>
@@ -99,103 +99,101 @@
 </template>
 <script>
 export default {
-    mounted() {},
-    data() {
-        return {
-            loginStatus: false,
-            disableStatus: false,
-            successMsgStatus: false,
-            successMsg: '',
-            failMsgStatus: false,
-            failMsg: '',
-            user: '',
-            pwd: ''
-        }
+  mounted() {},
+  data() {
+    return {
+      loginStatus: false,
+      disableStatus: false,
+      successMsgStatus: false,
+      successMsg: "",
+      failMsgStatus: false,
+      failMsg: "",
+      user: "",
+      pwd: ""
+    };
+  },
+  methods: {
+    onSubmit() {
+      this.$router.push("admin");
+      //turn off error msg
+      // this.toggleErrMsg(null, false)
+      // this.loginStatus = true
+      // auth user
+      // this.$store
+      //     .dispatch('auth/authUser', {
+      //         user: this.user,
+      //         pwd: md5(this.pwd)
+      //     })
+      //     .then(result => {
+      //         // if ok, pop success msg then go to admin page
+      //         if (result.code === 'ok') {
+      //             this.toggleSuccessMsg('恭喜登录成功！', true)
+      //             setTimeout(() => {
+      //                 this.$router.push('/admin')
+      //             }, 2000)
+      //             return
+      //         }
+      //         // if there's error code, pop error msg
+      //         if (result.code) {
+      //             this.toggleErrMsg(this.errCodeMsg(result.code), true)
+      //             return
+      //         }
+      //     })
     },
-    methods: {
-        onSubmit() {
-            this.$router.push('admin')
-            //turn off error msg
-            // this.toggleErrMsg(null, false)
-            // this.loginStatus = true
-            // auth user
-            // this.$store
-            //     .dispatch('auth/authUser', {
-            //         user: this.user,
-            //         pwd: md5(this.pwd)
-            //     })
-            //     .then(result => {
-            //         // if ok, pop success msg then go to admin page
-            //         if (result.code === 'ok') {
-            //             this.toggleSuccessMsg('恭喜登录成功！', true)
-            //             setTimeout(() => {
-            //                 this.$router.push('/admin')
-            //             }, 2000)
-            //             return
-            //         }
-            //         // if there's error code, pop error msg
-            //         if (result.code) {
-            //             this.toggleErrMsg(this.errCodeMsg(result.code), true)
-            //             return
-            //         }
-            //     })
-        },
-        //侦测是否所有输入格均被输入内容，若都有输入内容，改变登录鈕状态
-        loginTyping(user, pwd) {
-            console.log(user, pwd)
-            user && pwd
-                ? (this.disableStatus = false)
-                : (this.disableStatus = true)
-        },
-        //密码格式验证
-        userPwdValidate(pwd) {
-            let re = /^[a-zA-Z0-9]{6,10}$/
-            if (!re.test(pwd)) {
-                this.toggleErrMsg('密码输入错误', true)
-                return false
-            }
-            return true
-        },
-        toggleErrMsg(errMsg, val) {
-            this.failMsg = errMsg
-            this.failMsgStatus = val
-            this.loginStatus = false
-        },
-        toggleSuccessMsg(msg, val) {
-            this.successMsg = msg
-            this.successMsgStatus = val
-        }
+    //侦测是否所有输入格均被输入内容，若都有输入内容，改变登录鈕状态
+    loginTyping(user, pwd) {
+      console.log(user, pwd);
+      user && pwd ? (this.disableStatus = false) : (this.disableStatus = true);
+    },
+    //密码格式验证
+    userPwdValidate(pwd) {
+      let re = /^[a-zA-Z0-9]{6,10}$/;
+      if (!re.test(pwd)) {
+        this.toggleErrMsg("密码输入错误", true);
+        return false;
+      }
+      return true;
+    },
+    toggleErrMsg(errMsg, val) {
+      this.failMsg = errMsg;
+      this.failMsgStatus = val;
+      this.loginStatus = false;
+    },
+    toggleSuccessMsg(msg, val) {
+      this.successMsg = msg;
+      this.successMsgStatus = val;
     }
-}
+  }
+};
 </script>
 <style lang="scss" scoped>
 .login_backgournd {
-    height: 100vh;
-    width: 100vw;
-    background: #f5f7f9;
-    display: flex;
-    align-items: center;
-    justify-content: top;
-    flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background: #f5f7f9;
+  display: flex;
+  align-items: center;
+  justify-content: top;
+  flex-direction: column;
 }
 .title {
-    font-weight: normal;
-    margin: 5% 0 15px 0;
+  font-weight: normal;
+  margin: 5% 0 15px 0;
 }
 .card {
-    padding: 15px 15px 30px 15px;
-    width: 350px;
-    &__title {
-        text-align: center;
-        margin-bottom: 5px;
-        font-weight: normal;
-    }
-    &__bottom-wrap {
-        margin-top: 50px;
-    }
+  padding: 15px 15px 30px 15px;
+  width: 350px;
+  &__title {
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: normal;
+  }
+  &__bottom-wrap {
+    margin-top: 50px;
+  }
 }
 .message-wrap {
-    height: 50px;
+  height: 50px;
 }
 // .message {
 //     text-align: center;
@@ -210,16 +208,16 @@ export default {
 //     }
 // }
 form {
-    width: 100%;
+  width: 100%;
 }
 p {
-    margin-bottom: 3px;
+  margin-bottom: 3px;
 }
 .icon {
-    width: 25px;
+  width: 25px;
 }
 .input {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 // .has-error {
 //     box-shadow: 0 0 0 1px @error-color;
@@ -227,9 +225,9 @@ p {
 //     transition: 0.3s;
 // }
 .lang-wrap {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
 }
 </style>
