@@ -114,31 +114,23 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$router.push("admin");
-      //turn off error msg
-      // this.toggleErrMsg(null, false)
-      // this.loginStatus = true
-      // auth user
-      // this.$store
-      //     .dispatch('auth/authUser', {
-      //         user: this.user,
-      //         pwd: md5(this.pwd)
-      //     })
-      //     .then(result => {
-      //         // if ok, pop success msg then go to admin page
-      //         if (result.code === 'ok') {
-      //             this.toggleSuccessMsg('恭喜登录成功！', true)
-      //             setTimeout(() => {
-      //                 this.$router.push('/admin')
-      //             }, 2000)
-      //             return
-      //         }
-      //         // if there's error code, pop error msg
-      //         if (result.code) {
-      //             this.toggleErrMsg(this.errCodeMsg(result.code), true)
-      //             return
-      //         }
-      //     })
+      //this.$router.push("admin");
+      let authUrl =
+        "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=" +
+        process.env.fbAPIKey;
+
+      this.$axios
+        .$post(authUrl, {
+          email: this.user,
+          password: this.pwd,
+          returnSecureToken: true
+        })
+        .then(result => {
+          console.log(result);
+        })
+        .catch(err => {
+          console.log(err.response.data);
+        });
     },
     //侦测是否所有输入格均被输入内容，若都有输入内容，改变登录鈕状态
     loginTyping(user, pwd) {

@@ -49,6 +49,7 @@ module.exports = {
 
   plugins: [{ src: "~plugins/iview.js" }],
   modules: [
+    "@nuxtjs/axios",
     [
       "nuxt-i18n",
       {
@@ -60,5 +61,13 @@ module.exports = {
         loadLanguagesAsync: true
       }
     ]
-  ]
+  ],
+  axios: {
+    baseURL: process.env.BASE_URL || "https://nuxt-blog.firebaseio.com",
+    credentials: false
+  },
+  env: {
+    baseUrl: process.env.BASE_URL || "https://nuxt-blog.firebaseio.com",
+    fbAPIKey: "AIzaSyBNWjC_NfWNFok1wPWlyJOt5-qvIszmV58"
+  }
 };
