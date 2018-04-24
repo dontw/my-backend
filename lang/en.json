@@ -8,5 +8,8 @@
     "accPlaceholder": "Your Account",
     "pwdPlaceholder": "Your Password",
     "submit": "submit"
+  },
+  "message": {
+    "login": "Please Insert Your Account and Password!"
   }
 }

@@ -8,5 +8,8 @@
     "accPlaceholder": "您的帳號",
     "pwdPlaceholder": "您的密碼",
     "submit": "送出"
+  },
+  "message": {
+    "login": "請輸入您的帳號密碼！"
   }
 }

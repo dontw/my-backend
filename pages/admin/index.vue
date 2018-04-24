@@ -5,10 +5,11 @@
 </template>
 <script>
 export default {
-    data() {
-        return {}
-    }
-}
+  layout: "adminPanel",
+  data() {
+    return {};
+  }
+};
 </script>
 <style lang="scss" scoped>
 
