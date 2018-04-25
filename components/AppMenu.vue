@@ -1,25 +1,26 @@
 <template>
   <Menu 
     class="menu" 
-    :active-name="currRoute" 
+    
     :open-names="['users', 'orders', 'applications', 'products']" 
     theme="dark" 
     width="auto">
+    <!-- :active-name="currRoute"  -->
     <!-- MENU TITLE -->
     <div class="menu-title">
-      <h2>{{ $t('page.userAll') }}</h2>
+      <h2>{{ $t('myBackend') }}</h2>
     </div>
     <!-- SUBMENU:USERS -->
     <Submenu name="users">
       <template slot="title">
         <Icon type="person"/>
-        {{ $t('page.userManagement') }}
+        {{ $t('SUBMENU') }}
       </template>
       <!-- MENU ITEMS -->
       <i-menuItem 
         name="userAll" 
       >
-        <span>{{ $t('page.userAll') }}</span>
+        <span>{{ $t('OPTION') }}</span>
       </i-menuItem>
     </Submenu>
 
@@ -28,19 +29,19 @@
       <!-- MENU TITLE -->
       <template slot="title">
         <Icon type="android-apps"/>
-        {{ $t('page.applicationManagement') }}
+        {{ $t('SUBMENU') }}
       </template>
       <!-- MENU ITEMS -->
       <i-menuItem 
         name="recuperationSyStem" 
         
       >
-        <span>{{ $t('page.recuperationSyStem') }}</span>
+        <span>{{ $t('OPTION') }}</span>
       </i-menuItem>
       <i-menuItem 
         name="healthPassport" 
       >
-        <span>{{ $t('page.healthPassport') }}</span>
+        <span>{{ $t('OPTION') }}</span>
       </i-menuItem>
     </Submenu>
 
@@ -49,13 +50,13 @@
       <!-- MENU TITLE -->
       <template slot="title">
         <Icon type="bag"/>
-        {{ $t('page.productsManagement') }}
+        {{ $t('SUBMENU') }}
       </template>
       <!-- MENU ITEMS -->
       <i-menuItem 
         name="productList" 
       >
-        <span>{{ $t('page.productList') }}</span>
+        <span>{{ $t('OPTION') }}</span>
       </i-menuItem>
     </Submenu>
   </Menu>

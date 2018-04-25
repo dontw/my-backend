@@ -1,6 +1,10 @@
 {
   "test": "測試",
+  "setting": "設置",
+  "SUBMENU": "子選單",
+  "OPTION": "選項",
   "myBackend": "我的後台",
+  "logout": "登出",
   "login": {
     "title": "登入",
     "acc": "帳號",

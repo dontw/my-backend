@@ -45,5 +45,11 @@ export const actions = {
           return { status: "error", message: e.response.data.error.message };
         }
       });
+  },
+
+  logout({ commit }) {
+    commit("clearToken");
+    Cookie.remove("jwt");
+    Cookie.remove("expirationDate");
   }
 };

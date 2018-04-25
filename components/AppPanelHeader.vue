@@ -4,23 +4,19 @@
     mode="horizontal" 
     theme="light" 
     width="auto" 
-    :active-name="routerName"
   >
-    <h3>{{ $t(routerNameWithPage) }}</h3>
+    <!-- :active-name="routerName" -->
+    <!-- <h3>{{ $t(routerNameWithPage) }}</h3> -->
     <Submenu 
       class="submenu" 
-      name="setting"
-    >
+      name="setting">
       <template slot="title">
         <Icon 
           size="18" 
           type="settings"
         />
-        系统设置
+        {{ $t('setting') }}
       </template>
-      <i-menuItem 
-        name="changePassword" 
-        　@click.native="toChangePwd">修改管理员密码</i-menuItem>
       <i-menuItem 
         name="logout" 
         @click.native="onLogout">登出</i-menuItem>
@@ -34,25 +30,22 @@ export default {
     "i-menuItem": MenuItem
   },
   computed: {
-    routerNameWithPage() {
-      return (
-        "page." +
-        this.$route.path.split("/")[this.$route.path.split("/").length - 1]
-      );
-    },
-    routerName() {
-      return this.$route.path.split("/")[
-        this.$route.path.split("/").length - 1
-      ];
-    }
+    // routerNameWithPage() {
+    //   return (
+    //     "page." +
+    //     this.$route.path.split("/")[this.$route.path.split("/").length - 1]
+    //   );
+    // }
+    // routerName() {
+    //   return this.$route.path.split("/")[
+    //     this.$route.path.split("/").length - 1
+    //   ];
+    // }
   },
   methods: {
     onLogout() {
       this.$store.dispatch("auth/logout");
       this.$router.push("/login");
-    },
-    toChangePwd() {
-      this.$router.push("/admin/changePassword");
     }
   }
 };

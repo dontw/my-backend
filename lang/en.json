@@ -1,6 +1,10 @@
 {
   "test": "test",
   "myBackend": "my backend",
+  "setting": "setting",
+  "SUBMENU": "Sub Menu",
+  "OPTION": "Option",
+  "logout": "Log Out",
   "login": {
     "title": "Login",
     "acc": "account",
